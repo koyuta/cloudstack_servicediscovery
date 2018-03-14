@@ -11,6 +11,8 @@ import (
 	"github.com/xanzy/go-cloudstack/cloudstack"
 )
 
+type fileSDConfigs []fileSDConfig
+
 type fileSDConfig struct {
 	Targets []string          `json:"targets"`
 	Labels  map[string]string `json:"labels"`
@@ -45,7 +47,7 @@ func run() error {
 		}
 	}
 
-	data, err := json.Marshal(config)
+	data, err := json.Marshal(fileSDConfigs{config})
 	if err != nil {
 		return err
 	}
